@@ -1,0 +1,16 @@
+services:
+  weaviate:
+    image: semitechnologies/weaviate:latest
+    ports:
+      - "8080:8080"
+      - "50051:50051"
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+    environment:
+      ENABLE_MODULES: text2vec-openai
+      CLUSTER_HOSTNAME: "node1"
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+    restart: unless-stopped
+
+volumes:
+  weaviate_data:
